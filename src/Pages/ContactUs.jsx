@@ -71,14 +71,14 @@ export default function ContactUs() {
   return (
     <div className="min-h-screen bg-[#fcfdfc] text-[#1a2e1e] font-sans">
       {/* Hero Section */}
-      <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[40vh] min-h-100 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={picture3}
             alt="Herbal Trends Lab"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-[#fcfdfc]"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-white/50 to-[#fcfdfc]"></div>
         </div>
 
         
@@ -91,8 +91,7 @@ export default function ContactUs() {
             Let's Start a <span className="font-serif italic text-[#388e3c]">Conversation</span>
           </h1>
           <p className="text-lg text-[#4a5d4e] max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-12 duration-1200">
-            Because every paw, every tail, and every whisker matters to us. Reach out to our team of experts for any
-            queries regarding our herbal veterinary solutions.
+           Because the health and well-being of every animal matters to us. Reach out to our experts for guidance on our herbal veterinary solutions for pets, poultry, and cattle.
           </p>
         </div>
       </section>
@@ -277,7 +276,7 @@ export default function ContactUs() {
                         </>
                       )}
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                    <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                   </button>
                 </div>
               </form>

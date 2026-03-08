@@ -1,7 +1,5 @@
 import { Plus, Microscope, ShieldCheck, Factory, Leaf, Beaker, Heart, X } from "lucide-react"
-import Lab from "../assets/professional-veterinary-laboratory-background.jpg"
 import man from "../assets/high-tech-veterinary-manufacturing-facility.jpg"
-
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
@@ -10,7 +8,7 @@ export default function Home() {
   const [expandedCard, setExpandedCard] = useState(null)
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[#e5faeb]">
       {/* Hero Section */}
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute  inset-0 z-0">
@@ -42,125 +40,170 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Main Principles Section */}
-      <section className="pt-32 px-4 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-8">
-          <h2 className="text-5xl font-black text-green-950 tracking-tighter max-w-md leading-none">
-            Our core <br />
-            commitments.
-          </h2>
-          <p className="text-lg text-green-950/60 font-medium max-w-xl">
-            We believe that healthy animals are the backbone of a prosperous farm. By combining ancient botanical wisdom
-            with modern veterinary delivery systems—from soothing ointments to potent liquids—Herbal Trendsprovides the
-            tools you need to keep your herd healthy, productive, and profitable, naturally.
-          </p>
-        </div>
+      {/* Introduction Section - Blog Style */}
+      <section className="py-16 px-4 max-w-7xl mx-auto">
+        <article className="bg-linear-to-br from-green-50 to-emerald-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500">
+         
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              num: "01",
-              title: "Rumen-Friendly Science",
-              desc: "Our products are designed to work in harmony with the cattle's complex digestive system, supporting beneficial microflora",
-              icon: Microscope,
-            },
-            {
-              num: "02",
-              title: "GMP-Certified Excellence",
-              desc: "Every bolus, gel, and powder is manufactured in state-of-the-art facilities with strict quality control protocols.",
-              icon: ShieldCheck,
-            },
-            {
-              num: "03",
-              title: "Holistic Productivity",
-              desc: "We don't just treat symptoms; we improve the animal's overall Feed Conversion Ratio (FCR) and reproductive health.",
-              icon: Factory,
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="group p-10 bg-green-50 rounded-[2.5rem] hover:bg-green-950 hover:-translate-y-2 transition-all duration-500"
-            >
-              <div className="flex justify-between items-start mb-12">
-                <span className="text-6xl font-black text-green-950/10 group-hover:text-white/10 transition-colors">
-                  {item.num}
-                </span>
-                <item.icon className="w-10 h-10 text-green-950 group-hover:text-emerald-400 transition-colors" />
-              </div>
-              <h3 className="text-3xl font-black text-green-950 group-hover:text-white mb-6 tracking-tight">
-                {item.title}
-              </h3>
-              <p className="text-green-950/60 group-hover:text-white/70 font-medium leading-relaxed mb-8">
-                {item.desc}
+          {/* Blog Content */}
+          <div className="p-8 md:p-12">
+            {/* Meta Information */}
+           
+
+            {/* Title */}
+            <h2 className="text-4xl md:text-5xl font-black text-green-950 mb-6 leading-tight tracking-tight">
+              Our vision for the next generation.
+            </h2>
+
+            {/* Blog Excerpt Line */}
+            <div className="w-16 h-1 bg-emerald-500 rounded-full mb-8" />
+
+            {/* Blog Content */}
+            <div className="space-y-6 text-green-950/75 font-medium leading-relaxed">
+              <p className="text-lg">
+                At herbal trends, we believe that the best medicine for animals has already been perfected by nature.
+                Our mission is to transform traditional botanical wisdom into evidence-based healthcare solutions for
+                the modern veterinary world.
+              </p>
+              <p className="text-lg">
+                We specialize in developing high-potency, herbal and supplement formulations that support animal health
+                without the side effects. From livestock productivity to pet wellness, our products are rigorously
+                tested to ensure they meet the highest standards of safety and efficacy. We aren't just offering
+                supplements; we are offering a sustainable, chemical-free future for animal care.
               </p>
             </div>
-          ))}
+          </div>
+        </article>
+      </section>
+
+      {/* Main Principles Section */}
+      <section className="py-16 px-4 max-w-7xl mx-auto">
+        <div className="bg-linear-to-br from-green-50 to-emerald-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500">
+          <div className="p-8 md:p-12">
+            <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
+              <h2 className="text-4xl md:text-5xl font-black text-green-950 leading-tight tracking-tight">
+                Our core <br />
+                commitments.
+              </h2>
+              <div className="w-16 h-1 bg-emerald-500 rounded-full" />
+            </div>
+
+            <p className="text-lg text-green-950/75 font-medium max-w-3xl mb-12 leading-relaxed">
+              We believe that healthy animals are the backbone of a prosperous country. By combining ancient botanical wisdom
+              with modern veterinary delivery systems—from soothing ointments to potent liquids— <b className="text-green-950 font-black">Herbal Trends</b> provides the
+              tools you need to keep your herd healthy, productive, and profitable, naturally.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  num: "01",
+                  title: "Rumen-Friendly Science",
+                  desc: "Our products are designed to work in harmony with the cattle's complex digestive system, supporting beneficial microflora",
+                  icon: Microscope,
+                },
+                {
+                  num: "02",
+                  title: "GMP-Certified Excellence",
+                  desc: "Every bolus, gel, and powder is manufactured in state-of-the-art facilities with strict quality control protocols.",
+                  icon: ShieldCheck,
+                },
+                {
+                  num: "03",
+                  title: "Holistic Productivity",
+                  desc: "We don't just treat symptoms; we improve the animal's overall Feed Conversion Ratio (FCR) and reproductive health.",
+                  icon: Factory,
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="group p-10 bg-white/50 backdrop-blur-sm rounded-2xl hover:bg-emerald-500 hover:-translate-y-2 transition-all duration-500 border border-white/30 hover:border-emerald-600/30 shadow-md hover:shadow-lg"
+                >
+                  <div className="flex justify-between items-start mb-12">
+                    <span className="text-6xl font-black text-green-950/10 group-hover:text-white/20 transition-colors">
+                      {item.num}
+                    </span>
+                    <item.icon className="w-10 h-10 text-emerald-600 group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-2xl font-black text-green-950 group-hover:text-white mb-4 tracking-tight transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-green-950/70 group-hover:text-white/90 font-medium leading-relaxed transition-colors">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-32 px-4 max-w-7xl mx-auto bg-white">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-black text-green-950 tracking-tighter mb-6 leading-tight">
-            Why Choose Us
-          </h2>
-          <p className="text-lg text-green-950/60 font-medium max-w-3xl mx-auto">
-            Discover what sets Herbal Trends apart in the veterinary wellness industry
-          </p>
-        </div>
+      <section className="py-32 px-4 max-w-7xl mx-auto">
+        <div className="bg-linear-to-br from-emerald-50 to-green-50 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 p-12">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black text-green-950 tracking-tight mb-6 leading-tight">
+              Why Choose Us
+            </h2>
+            <div className="w-16 h-1 bg-emerald-500 rounded-full mx-auto mb-8" />
+            <p className="text-lg text-green-950/75 font-medium max-w-3xl mx-auto">
+              Discover what sets Herbal Trends apart in the veterinary wellness industry
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              icon: Factory,
-              title: "Zero Residue",
-              desc: "No harmful chemicals in meat or milk products",
-              color: "bg-emerald-50",
-              iconColor: "text-emerald-600",
-              hoverBg: "hover:bg-emerald-600",
-            },
-            {
-              icon: Beaker,
-              title: "Science-Backed",
-              desc: "Herbal formulas tested for consistent results",
-              color: "bg-blue-50",
-              iconColor: "text-blue-600",
-              hoverBg: "hover:bg-blue-600",
-            },
-            {
-              icon: Leaf,
-              title: "Eco-Friendly",
-              desc: "Sustainably sourced ingredients and biodegradable focus",
-              color: "bg-green-50",
-              iconColor: "text-green-600",
-              hoverBg: "hover:bg-green-600",
-            },
-            {
-              icon: Heart,
-              title: "Holistic Health",
-              desc: "Treating the root cause, not just the symptoms",
-              color: "bg-red-50",
-              iconColor: "text-red-600",
-              hoverBg: "hover:bg-red-600",
-            },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className={`group p-8 ${item.color} rounded-4xl hover:shadow-2xl hover:shadow-green-950/10 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer border border-transparent ${item.hoverBg} hover:border-white/30`}
-            >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Factory,
+                title: "Zero Residue",
+                desc: "No harmful chemicals in meat or milk products",
+                color: "bg-gradient-to-br from-emerald-100 to-emerald-50",
+                iconBg: "bg-emerald-100",
+                iconColor: "text-emerald-600",
+              },
+              {
+                icon: Beaker,
+                title: "Science-Backed",
+                desc: "Herbal formulas tested for consistent results",
+                color: "bg-gradient-to-br from-blue-100 to-blue-50",
+                iconBg: "bg-blue-100",
+                iconColor: "text-blue-600",
+              },
+              {
+                icon: Leaf,
+                title: "Eco-Friendly",
+                desc: "Sustainably sourced ingredients and biodegradable focus",
+                color: "bg-gradient-to-br from-green-100 to-green-50",
+                iconBg: "bg-green-100",
+                iconColor: "text-green-600",
+              },
+              {
+                icon: Heart,
+                title: "Holistic Health",
+                desc: "Treating the root cause, not just the symptoms",
+                color: "bg-gradient-to-br from-red-100 to-red-50",
+                iconBg: "bg-red-100",
+                iconColor: "text-red-600",
+              },
+            ].map((item, idx) => (
               <div
-                className={`w-16 h-16 ${item.iconColor} rounded-2xl flex items-center justify-center mb-6 group-${item.hoverBg.replace("hover:", "")} transition-all duration-500 group-hover:bg-white/20 group-hover:scale-110`}
+                key={idx}
+                className={`group p-8 ${item.color} rounded-2xl shadow-md hover:shadow-2xl hover:shadow-green-950/15 hover:-translate-y-2 transition-all duration-500 cursor-pointer border border-white/50 hover:border-white/80`}
               >
-                <item.icon className="w-8 h-8" />
+                <div
+                  className={`w-16 h-16 ${item.iconBg} ${item.iconColor} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-500`}
+                >
+                  <item.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-black text-green-950 mb-3 group-hover:text-green-700 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-green-950/70 font-medium leading-relaxed group-hover:text-green-950/85 transition-colors">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="text-2xl font-black text-green-950 mb-3 group-hover:text-white transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-green-950/70 font-medium leading-relaxed group-hover:text-white/80 transition-colors">
-                {item.desc}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

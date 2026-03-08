@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
-import logo from "../assets/logo.png"
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import Fuse from "fuse.js"
-import products, { allProducts } from "../data/products_data"
+import { allProducts } from "../data/products_data"
 import { useRef, useEffect } from "react"
 
 export default function Header() {
@@ -31,7 +30,7 @@ const searchRef = useRef(null)
     { label: "About", to: "/about-us" },
     { label: "Product", to: "/categories" },
     { label: "Contact", to: "/contact-us" },
-    { label: "ThirdParty", to: "/third-party" },
+    { label: "Third-Party Mfd.", to: "/third-party" },
   ]
 
   const closeMenu = () => setIsOpen(false)
@@ -99,7 +98,7 @@ useEffect(() => {
             {/* Logo */}
             <div className="flex items-center gap-3 shrink-0">
               <NavLink to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <img src={logo || "/placeholder.svg"} alt="Logo" className="h-14 w-14 object-contain" />
+                <img src="https://res.cloudinary.com/djxxk3hkp/image/upload/v1772965723/logo_rqzxe0.png" alt="Logo" className="h-14 w-14 object-contain" />
                 <div className="leading-tight">
                   <p className="text-white text-lg font-bold tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
                     Herbal
@@ -187,7 +186,7 @@ useEffect(() => {
           <div className="md:hidden flex items-center justify-between h-16">
             {/* Mobile Logo */}
             <NavLink to="/" className="flex items-center gap-2 shrink-0">
-              <img src={logo || "/placeholder.svg"} alt="Logo" className="h-12 w-12 object-contain" />
+              <img src="https://res.cloudinary.com/djxxk3hkp/image/upload/v1772965723/logo_rqzxe0.png" alt="Logo" className="h-12 w-12 object-contain" />
               <div className="leading-tight">
                 <p className="text-white text-sm font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
                   Herbal

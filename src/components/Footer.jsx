@@ -1,6 +1,4 @@
-import React from 'react'
 import { Facebook, Linkedin, Twitter, Instagram, Mail, Phone, Clock, MapPin, ChevronRight, LogOut } from "lucide-react"
-import Logo from "../assets/logo.png"
 import { Link } from 'react-router-dom'
 const Footer = () => {
 
@@ -8,7 +6,7 @@ const Footer = () => {
     { label: "About", to: "/about-us" },
     { label: "Our Products", to: "/categories" },
     { label: "Contact Us", to: "/contact-us" },
-    { label: "Categories", to: "/categories" }
+    { label: "Third-Party Manufacturing", to: "/third-party" }
   ]
    return (
     <footer className="bg-green-950 text-green-50/80 pt-16 pb-8 border-t border-green-800">
@@ -17,7 +15,7 @@ const Footer = () => {
           {/* Company Info Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-                <img src={Logo}
+                <img src="https://res.cloudinary.com/djxxk3hkp/image/upload/v1772965723/logo_rqzxe0.png"
                   alt="Herbal Trends Logo"
                   />
              
@@ -37,7 +35,7 @@ const Footer = () => {
                   For Export Enquiry:
                 </h4>
                 <p className="text-white font-semibold">
-                  Mr. Yash Aggarwal <span className="text-green-800 font-normal">|</span> +91-8273230778
+                  Mr. P.K. Gupta <span className="text-green-800 font-normal">|</span> +91-9810344257
                 </p>
               </div>
               <div>
@@ -45,7 +43,7 @@ const Footer = () => {
                   For Domestic Enquiry:
                 </h4>
                 <p className="text-white font-semibold">
-                  Mr. Arsh <span className="text-green-800 font-normal">|</span> +91-9208585875
+                  Mr. Pankaj Gupta <span className="text-green-800 font-normal">|</span> +91-9910037950
                 </p>
               </div>
             </div>
@@ -97,7 +95,7 @@ const Footer = () => {
                   <div className="bg-green-900/50 p-2 rounded-full h-fit border border-green-800">
                     <Phone className="w-5 h-5 text-emerald-400" />
                   </div>
-                  <p className="text-sm font-medium text-green-50 self-center">+91-8273230778</p>
+                  <p className="text-sm font-medium text-green-50 self-center">+91-9910037950</p>
                 </div>
 
                 <div className="flex gap-4">
