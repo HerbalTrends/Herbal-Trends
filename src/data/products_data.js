@@ -1,4 +1,4 @@
-import ProductImage from "../assets/image.png";
+
 
 const generateId = (name) =>
   name
@@ -720,17 +720,34 @@ const productsWithOutId = [
       directionsToUse: "Stir into your pet's drinking water or add to food or administer with dropper / spoon",
       image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1770922021/ChatGPT_Image_Feb_13_2026_12_16_31_AM_kuscwj.png"],
     },
+    {
+      name: "Gut aid",
+      keyword:"Advanced Pre & Probiotic Digestive Syrup",
+      medicineType: "Animal feed supplement",
+      physicalForm: "Chewable Tablets",
+      ingredients: "Elemental calcium,Elemental phosphorus, Magnesium, Vitamin D3, Vitamin B12, Iron",
+      treatmentsAndFunctions:"Procal Plus Tablet is exclusively formulated with special taste appeal for spontaneous intake by dogs.",
+      recommendedFor: "Dogs and Cats",
+      quantity: "50 / box",
+      StorageInstructions:" Store in a cool, dry place away from direct sunlight.",
+      dosage: "2Puppies and dogs under 5kg 1 tab daily, dogs above 5 kg 2 tabs twice daily, or as recommended by the veterinarian",
+      directionsToUse: "Feed directly to the pets",
+      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1772946474/ChatGPT_Image_Mar_8_2026_10_37_43_AM_zjvjna.png"],
+    }
   ],
 ];
 
 
-const products = productsWithOutId.map((category) =>
-  category.map((product) => ({
+const categories = ["cattle-care", "poultry-care", "pet-care"];
+
+const products = productsWithOutId.map((categoryProducts, categoryIndex) =>
+  categoryProducts.map((product) => ({
     id: generateId(product.name),
+    category: categories[categoryIndex],
     ...product,
   }))
 );
 
-
+export const allProducts = products.flat();
 
 export default products;

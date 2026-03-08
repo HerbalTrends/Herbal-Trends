@@ -3,10 +3,16 @@ import { Menu, X, ChevronDown } from "lucide-react"
 import logo from "../assets/logo.png"
 import { NavLink } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import Fuse from "fuse.js"
+import products, { allProducts } from "../data/products_data"
+import { useRef, useEffect } from "react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [query, setQuery] = useState("")
+const [results, setResults] = useState([])
+const searchRef = useRef(null)
    const navigate = useNavigate();
 
   const categories = [
@@ -14,6 +20,11 @@ export default function Header() {
     { label: "Poultry Care", value: "poultry-care" },
     { label: "Pet Care", value: "pet-care" },
   ]
+
+  const fuse = new Fuse(allProducts, {
+  keys: ["name", "keyword"],
+  threshold: 0.35,
+})
 
   const navLinks = [
     { label: "Home", to: "/" },
@@ -30,6 +41,48 @@ export default function Header() {
     closeMenu()
   }
 
+  const handleSearch = (e) => {
+  const value = e.target.value
+  setQuery(value)
+
+  if (!value.trim()) {
+    setResults([])
+    return
+  }
+
+  const searchResults = fuse.search(value)
+  const filtered = searchResults.map((r) => r.item)
+
+  setResults(filtered.slice(0, 6))
+}
+
+  function formatString(input) {
+  if (typeof input !== "string") return "";
+  
+  const beforeSlash = input.toLowerCase().split("/")[0];
+  return beforeSlash.trim().replace(/\s+/g, "-");
+}
+
+const handleProductClick = (product) => {
+  navigate(`/product-page/${product.category}/${formatString(product.keyword)}/${product.id}`)
+  setResults([])
+  setQuery("")
+}
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setResults([])
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside)
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside)
+  }
+}, [])
+
   const handleWhatsAppClick = () => {
     // Replace with your WhatsApp number (include country code without + or spaces)
     const phoneNumber = import.meta.env.VITE_MOBILE_NUMBER;
@@ -39,53 +92,52 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-green-950 shadow-lg">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-green-950 to-green-900 shadow-2xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative flex items-center h-20">
-              <div className="flex items-center gap-2">
-              <NavLink to="/">
-                <img src={logo || "/placeholder.svg"} alt="Logo" className="h-14" />
+          {/* Desktop Header */}
+          <div className="hidden md:flex items-center justify-between h-20 gap-6">
+            {/* Logo */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <NavLink to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src={logo || "/placeholder.svg"} alt="Logo" className="h-14 w-14 object-contain" />
+                <div className="leading-tight">
+                  <p className="text-white text-lg font-bold tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    Herbal
+                  </p>
+                  <p className="text-green-400 text-lg font-semibold tracking-wider" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    Trends
+                  </p>
+                </div>
               </NavLink>
-             <div className="hidden sm:block leading-tight">
-  <p className="text-white text-xl font-bold tracking-wide"
-     style={{ fontFamily: "'Playfair Display', serif" }}>
-    Herbal
-  </p>
-  <p className="text-green-400 text-xl font-semibold tracking-wider"
-     style={{ fontFamily: "'Playfair Display', serif" }}>
-    Trends
-  </p>
-</div>
             </div>
 
-            <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10">
+            {/* Desktop Navigation */}
+            <nav className="flex items-center gap-8 flex-1 justify-center">
               {navLinks.map((link) => (
-              <NavLink
-  key={link.label}
-  to={link.to}
-  end={link.to === "/"}
-  className={({ isActive }) =>
-    `text-green-200 text-md font-medium transition-colors hover:text-green-400 
-     ${isActive ? "border-b-2 border-green-400 text-green-400" : ""}`
-  }
->
-  {link.label}
-</NavLink>
+                <NavLink
+                  key={link.label}
+                  to={link.to}
+                  end={link.to === "/"}
+                  className={({ isActive }) =>
+                    `text-green-200 text-sm font-semibold transition-all duration-300 relative px-3 py-2 hover:text-green-300
+                     ${isActive ? "text-green-300 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-gradient-to-r after:from-green-400 after:to-green-300 after:rounded-full" : ""}`
+                  }
+                >
+                  {link.label}
+                </NavLink>
               ))}
               <div className="relative group">
-                <button className="text-green-200 text-md font-medium hover:text-green-400 transition-colors flex items-center gap-1">
+                <button className="text-green-200 text-sm font-semibold hover:text-green-300 transition-all duration-300 flex items-center gap-2 px-3 py-2">
                   Categories
                   <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
                 </button>
-
-                {/* Dropdown Menu */}
-                <div className="absolute left-0 top-full pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <div className="bg-white rounded-lg shadow-lg py-2 min-w-max">
+                <div className="absolute left-0 top-full pt-3 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+                  <div className="bg-white rounded-lg shadow-xl py-2 min-w-max border border-green-100">
                     {categories.map((category, idx) => (
                       <button
                         key={idx}
                         onClick={() => handleCategoryClick(category.value, idx + 1)}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors"
+                        className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 hover:text-green-700 transition-all duration-200 font-medium border-l-4 border-transparent hover:border-green-400"
                       >
                         {category.label}
                       </button>
@@ -95,160 +147,153 @@ export default function Header() {
               </div>
             </nav>
 
-            <button
-              onClick={handleWhatsAppClick}
-              className="hidden absolute right-12 items-center justify-center w-10 h-10 bg-[#25D366] rounded-full hover:bg-[#20BA5A] transition-colors shadow-lg"
-              aria-label="Contact us on WhatsApp"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="w-6 h-6 fill-white"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-              </svg>
-            </button>
-
-            <button
-              className="md:hidden absolute right-4 text-white p-2"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              style={{
-                transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-                transition: "transform 0.3s ease-out",
-              }}
-            >
-              {isOpen ? <X size={26} /> : <Menu size={26} />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {isOpen && (
-        <div className="fixed inset-0 z-50">
-          {/* Backdrop with fade */}
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={closeMenu}
-            style={{
-              animation: "fadeIn 0.3s ease-out",
-            }}
-          />
-
-      
-          <div
-            className="absolute right-0 top-0 h-full w-72 bg-green-950 shadow-xl p-6 flex flex-col"
-            style={{
-              animation: "slideInRight 0.3s ease-out",
-            }}
-          >
-          
-            <button
-              className="self-end text-white mb-6 p-2 hover:rotate-90"
-              onClick={closeMenu}
-              aria-label="Close menu"
-              style={{
-                transition: "transform 0.3s ease-out",
-              }}
-            >
-              <X size={26} />
-            </button>
-
-            <nav className="flex flex-col gap-6">
-              {navLinks.map((link, idx) => (
-               <NavLink
-  key={link.label}
-  to={link.to}
-  end={link.to === "/"}
-  onClick={closeMenu}
-  className={({ isActive }) =>
-    `text-green-200 text-lg font-medium transition-colors hover:text-green-400
-     ${isActive ? "underline underline-offset-4 decoration-2 text-green-400" : ""}`
-  }
->
-  {link.label}
-</NavLink>
-              ))}
-
-              <div>
-                <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="text-green-200 text-lg font-medium hover:text-green-400 transition-colors flex items-center gap-2 w-full"
-                  style={{
-                    animation: `slideInRight 0.3s ease-out ${navLinks.length * 50}ms backwards`,
-                  }}
-                >
-                  Categories
-                  <ChevronDown
-                    size={20}
-                    className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`}
+            {/* Desktop Search & WhatsApp */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <div className="relative w-64" ref={searchRef}>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={handleSearch}
+                    placeholder="Search products..."
+                    className="w-full px-4 py-2.5 pr-10 rounded-lg text-sm outline-none bg-white/95 text-gray-800 placeholder-gray-500 border border-green-300/50 focus:border-green-400 focus:ring-2 focus:ring-green-400/30 transition-all duration-300 shadow-sm"
                   />
-                </button>
-
-        
-                {isDropdownOpen && (
-                  <div className="mt-3 ml-4 flex flex-col gap-2">
-                    {categories.map((category, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => handleCategoryClick(category.value, idx + 1)}
-                        className="text-green-200 text-sm hover:text-white transition-colors text-left"
-                        style={{
-                          animation: `slideInRight 0.2s ease-out ${idx * 30}ms backwards`,
-                        }}
+                  <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                {results.length > 0 && (
+                  <div className="absolute top-full left-0 w-full bg-white shadow-xl rounded-lg mt-2 max-h-64 overflow-y-auto z-50 border border-green-100">
+                    {results.map((product) => (
+                      <div
+                        key={product.id}
+                        onClick={() => handleProductClick(product)}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 cursor-pointer border-b border-gray-100 transition-all duration-200 last:border-b-0 group"
                       >
-                        {category.label}
-                      </button>
+                        <img src={product.image[0]} alt={product.name} className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-200" />
+                        <div>
+                          <p className="text-sm font-semibold text-gray-800">{product.name}</p>
+                          <p className="text-xs text-gray-500">{product.keyword}</p>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
-
-              <button
-                onClick={() => {
-                  handleWhatsAppClick()
-                  closeMenu()
-                }}
-                className="flex items-center gap-3 text-white text-lg font-medium hover:text-green-200 transition-colors mt-4"
-                style={{
-                  animation: `slideInRight 0.3s ease-out ${(navLinks.length + 1) * 50}ms backwards`,
-                }}
-              >
-                <div className="flex items-center justify-center w-8 h-8 bg-[#25D366] rounded-full">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="w-5 h-5 fill-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                  </svg>
-                </div>
-                WhatsApp
-              </button>
-            </nav>
+            </div>
           </div>
 
-          <style>{`
-            @keyframes slideInRight {
-              from {
-                transform: translateX(100%);
-                opacity: 0;
-              }
-              to {
-                transform: translateX(0);
-                opacity: 1;
-              }
-            }
+          {/* Mobile Header */}
+          <div className="md:hidden flex items-center justify-between h-16">
+            {/* Mobile Logo */}
+            <NavLink to="/" className="flex items-center gap-2 flex-shrink-0">
+              <img src={logo || "/placeholder.svg"} alt="Logo" className="h-12 w-12 object-contain" />
+              <div className="leading-tight">
+                <p className="text-white text-sm font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Herbal
+                </p>
+                <p className="text-green-400 text-xs font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Trends
+                </p>
+              </div>
+            </NavLink>
 
-            @keyframes fadeIn {
-              from {
-                opacity: 0;
-              }
-              to {
-                opacity: 1;
-              }
-            }
-          `}</style>
+            {/* Mobile Menu Button */}
+            <button
+              className="text-white p-2 hover:bg-green-800 rounded-lg transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Search Bar */}
+          {isOpen && (
+            <div className="md:hidden pb-4 border-t border-green-800">
+              <div className="relative mt-4" ref={searchRef}>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={handleSearch}
+                  placeholder="Search products..."
+                  className="w-full px-4 py-2.5 pr-10 rounded-lg text-sm outline-none bg-white/95 text-gray-800 placeholder-gray-500 border border-green-300/50 focus:border-green-400 focus:ring-2 focus:ring-green-400/30 transition-all duration-300"
+                />
+                <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                {results.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 bg-white shadow-xl rounded-lg mt-2 max-h-64 overflow-y-auto z-50 border border-green-100">
+                    {results.map((product) => (
+                      <div
+                        key={product.id}
+                        onClick={() => {
+                          handleProductClick(product)
+                          setIsOpen(false)
+                        }}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 cursor-pointer border-b border-gray-100 transition-all duration-200 last:border-b-0"
+                      >
+                        <img src={product.image[0]} alt={product.name} className="w-10 h-10 object-contain" />
+                        <div>
+                          <p className="text-sm font-semibold text-gray-800">{product.name}</p>
+                          <p className="text-xs text-gray-500">{product.keyword}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {isOpen && (
+        <div className="md:hidden bg-green-900 border-t border-green-800 py-4 px-4">
+          <nav className="flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.label}
+                to={link.to}
+                end={link.to === "/"}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `text-green-200 text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 hover:bg-green-800
+                   ${isActive ? "bg-green-700 text-green-300" : ""}`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+
+            <div>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="text-green-200 text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-800 transition-all duration-200 flex items-center gap-2 w-full"
+              >
+                Categories
+                <ChevronDown size={16} className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {isDropdownOpen && (
+                <div className="mt-2 ml-4 flex flex-col gap-1">
+                  {categories.map((category, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        handleCategoryClick(category.value, idx + 1)
+                        setIsDropdownOpen(false)
+                      }}
+                      className="text-green-200 text-xs px-4 py-2 hover:text-green-300 hover:bg-green-800 rounded-lg transition-colors text-left"
+                    >
+                      {category.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+          </nav>
         </div>
       )}
     </>

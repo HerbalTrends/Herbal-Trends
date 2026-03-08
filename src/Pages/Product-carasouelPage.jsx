@@ -3,30 +3,27 @@
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import dummyImage from "../assets/image.png"
-
-
 const heroSlides = [
   {
     id: 1,
     title: "Cattle Care",
     description: "Medicines help protect animal health, prevent disease, and keep our food supply safe.",
     backgroundVideo: "https://res.cloudinary.com/djxxk3hkp/video/upload/v1767639613/CattleCare_xyqwff.mp4",
-    imageUrl: dummyImage,
+    imageUrl: "https://res.cloudinary.com/djxxk3hkp/image/upload/v1772917606/1000236156_ooom9l.jpg",
   },
   {
     id: 2,
     title: "Poultry Care",
     description: "Medicines help protect animal health, prevent disease, and keep our food supply safe.",
     backgroundVideo:"https://res.cloudinary.com/djxxk3hkp/video/upload/v1767639612/PoultryCare_galuqj.mp4",
-    imageUrl: dummyImage,
+    imageUrl:"https://res.cloudinary.com/djxxk3hkp/image/upload/v1772917665/1000236154_rutng3.jpg",
   },
   {
     id: 3,
     title: "Pet Care",
     description: "Medicines help protect animal health, prevent disease, and keep our food supply safe.",
     backgroundVideo: "https://res.cloudinary.com/djxxk3hkp/video/upload/v1767639600/PetCare_tsdznh.mp4",
-    imageUrl: dummyImage,
+    imageUrl:"https://res.cloudinary.com/djxxk3hkp/image/upload/v1772917586/1000236152.jpg_vdf3uh.jpg",
   },
 ]
 
@@ -76,16 +73,16 @@ export default function ProductCarousel() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content container */}
-      <div className="relative h-full flex  items-center px-4 sm:px-8 lg:px-12">
+      <div className="relative  h-full flex  items-center  px-4 sm:px-8 lg:px-12">
         <div
-          key={currentSlide}
-          className="w-screen bg-black/30 p-10  rounded-2xl max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
+  key={currentSlide}
+  className="w-[85%] bg-black/30 mx-auto p-10 rounded-2xl flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-8 lg:gap-12"
+  onMouseEnter={() => setIsHovering(true)}
+  onMouseLeave={() => setIsHovering(false)}
+>
           {/* Left content */}
           <div
-            className="text-white space-y-6 sm:space-y-8 order-2 lg:order-1"
+            className="text-white space-y-6 sm:space-y-8 max-w-xl order-2 lg:order-1"
             style={{
               animation: "fadeInUp 0.8s ease-out forwards",
             }}
@@ -122,7 +119,7 @@ export default function ProductCarousel() {
 
           {/* Right image placeholder */}
           <div
-            className="relative w-full h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden order-1 lg:order-2"
+           className="relative flex justify-end w-full lg:w-auto h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden order-1 lg:order-2"
             style={{
               animation: "fadeInRight 0.8s ease-out forwards",
             }}
@@ -130,7 +127,7 @@ export default function ProductCarousel() {
             <img
               src={slide.imageUrl || "/placeholder.svg"}
               alt={slide.title}
-              className="object-cover w-full h-full"
+                className="h-full  object-contain"
               key={slide.id}
             />
           </div>
