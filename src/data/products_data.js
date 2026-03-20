@@ -732,7 +732,7 @@ const productsWithOutId = [
       StorageInstructions:" Store in a cool, dry place away from direct sunlight to maintain the integrity of the botanical extracts.",
       dosage: "For maximum benefit from the Neem and Eucalyptus, let the lather sit on your dog’s coat for 2–3 minutes before rinsing.",
       directionsToUse: "Prep the Coat: Thoroughly wet your dog’s coat with lukewarm water from head to tail ,Apply: Dispense a generous amount of shampoo into your palms. Massage into the fur starting from the neck and moving backward.,Lather: Work into a rich lather ensuring you reach the skin. Be extra careful around the eyes and ears and nose.,The Botanical Soak: For the best results with the Neem and Cymbopogon allow the lather to remain on the coat for 3 to 5 minutes. This allows the essential oils to penetrate and soothe the skin.,Rinse: Rinse thoroughly with clean water until no suds remain.,Dry: Towel dry or blow-dry on a cool setting. Brush the coat once dry for maximum shine.",
-      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1772946474/ChatGPT_Image_Mar_8_2026_10_37_43_AM_zjvjna.png"],
+      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1767639562/Generated_Image_November_01_2025_-_9_37AM_lfncqg.png"],
     },
      {
       name: "Oyan Shampoo for Short Coat",
@@ -760,7 +760,7 @@ const productsWithOutId = [
       StorageInstructions:" Store in a cool, dry place away from direct sunlight to maintain the integrity of the botanical extracts.",
       dosage: "For maximum benefit from the Neem and Eucalyptus, let the lather sit on your dog’s coat for 2–3 minutes before rinsing.",
       directionsToUse: "Prep the Coat: Thoroughly wet your dog’s coat with lukewarm water from head to tail ,Apply: Dispense a generous amount of shampoo into your palms. Massage into the fur starting from the neck and moving backward.,Lather: Work into a rich lather ensuring you reach the skin. Be extra careful around the eyes and ears and nose.,The Botanical Soak: For the best results with the Neem and Cymbopogon allow the lather to remain on the coat for 3 to 5 minutes. This allows the essential oils to penetrate and soothe the skin.,Rinse: Rinse thoroughly with clean water until no suds remain.,Dry: Towel dry or blow-dry on a cool setting. Brush the coat once dry for maximum shine.",
-      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1772946474/ChatGPT_Image_Mar_8_2026_10_37_43_AM_zjvjna.png"],
+      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1767639560/WhatsApp_Image_2025-10-31_at_12.39.32_PM_jpl7sd.jpg"],
     },
     {
       name: "Oyan Herbal Arnica Shampoo",
@@ -774,7 +774,7 @@ const productsWithOutId = [
       StorageInstructions:" Store in a cool, dry place away from direct sunlight to maintain the integrity of the botanical extracts.",
       dosage: "For maximum benefit from the Neem and Eucalyptus, let the lather sit on your dog’s coat for 2–3 minutes before rinsing.",
       directionsToUse: "Prep the Coat: Thoroughly wet your dog’s coat with lukewarm water from head to tail ,Apply: Dispense a generous amount of shampoo into your palms. Massage into the fur starting from the neck and moving backward.,Lather: Work into a rich lather ensuring you reach the skin. Be extra careful around the eyes and ears and nose.,The Botanical Soak: For the best results with the Neem and Cymbopogon allow the lather to remain on the coat for 3 to 5 minutes. This allows the essential oils to penetrate and soothe the skin.,Rinse: Rinse thoroughly with clean water until no suds remain.,Dry: Towel dry or blow-dry on a cool setting. Brush the coat once dry for maximum shine.",
-      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1772946474/ChatGPT_Image_Mar_8_2026_10_37_43_AM_zjvjna.png"],
+      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1767639560/Generated_Image_October_31_2025_-_8_44PM_k5fzyh.png"],
     },
     {
       name: "Oyan Puppy Kitten Shampoo",
@@ -788,7 +788,7 @@ const productsWithOutId = [
       StorageInstructions:" Store in a cool, dry place away from direct sunlight to maintain the integrity of the botanical extracts.",
       dosage: "For maximum benefit from the Neem and Eucalyptus, let the lather sit on your dog’s coat for 2–3 minutes before rinsing.",
       directionsToUse: "Prep the Coat: Thoroughly wet your dog’s coat with lukewarm water from head to tail ,Apply: Dispense a generous amount of shampoo into your palms. Massage into the fur starting from the neck and moving backward.,Lather: Work into a rich lather ensuring you reach the skin. Be extra careful around the eyes and ears and nose.,The Botanical Soak: For the best results with the Neem and Cymbopogon allow the lather to remain on the coat for 3 to 5 minutes. This allows the essential oils to penetrate and soothe the skin.,Rinse: Rinse thoroughly with clean water until no suds remain.,Dry: Towel dry or blow-dry on a cool setting. Brush the coat once dry for maximum shine.",
-      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1772946474/ChatGPT_Image_Mar_8_2026_10_37_43_AM_zjvjna.png"],
+      image: ["https://res.cloudinary.com/djxxk3hkp/image/upload/v1767639557/Generated_Image_November_01_2025_-_9_56AM_xmdzyp.png"],
     },
     {
       name: "Oyan Relish",
